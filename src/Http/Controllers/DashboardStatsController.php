@@ -18,7 +18,7 @@ class DashboardStatsController extends Controller
      */
     public function online(OnlineCounter $onlineCounter)
     {
-        return response()->json(
+        return $this->jsonResponse(
             [
                 'users'    => $onlineCounter->getOnlineUsersCount(),
                 'visitors' => $onlineCounter->getOnlineVisitorsCount(),
@@ -34,7 +34,7 @@ class DashboardStatsController extends Controller
      */
     public function server(ServerStats $serverStats)
     {
-        return response()->json(
+        return $this->jsonResponse(
             [
                 'cpu'      => $serverStats->getCpuUsages(),
                 'memory'   => $serverStats->getMemoryUsage(),

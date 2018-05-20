@@ -29,14 +29,26 @@ class RedisOnlineVisitorsRepository implements OnlineVisitorsRepository
 
     /**
      * @param string $key
-     * @param int    $start
      * @param int    $end
+     * @param int    $start
      *
      * @return int
      */
-    public function getVisitorCount(string $key, int $start, int $end): int
+    public function getVisitorCount(string $key, int $end, int $start): int
     {
         return $this->connection()->zcount($key, $start, $end);
+    }
+
+    /**
+     * @param string $key
+     * @param int    $score
+     * @param string $member
+     *
+     * @return int
+     */
+    public function setVisitorLog(string $key, int $score, string $member): int
+    {
+        return $this->connection()->zadd($key, [$member => $score]);
     }
 
     /**

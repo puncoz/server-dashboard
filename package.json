@@ -18,6 +18,8 @@
     "vue-router": "^3.0.1"
   },
   "devDependencies": {
+    "browser-sync": "^2.24.4",
+    "browser-sync-webpack-plugin": "2.0.1",
     "cross-env": "^5.1.5",
     "es6-promise": "^4.2.4",
     "laravel-mix": "^2.1.11"

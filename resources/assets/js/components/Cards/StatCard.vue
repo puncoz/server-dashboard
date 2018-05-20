@@ -11,20 +11,10 @@
     name: "StatCard",
 
     props: {
-      title: {
-        required: true,
-        type: String,
-      },
-      value: {
-        required: true,
-      },
-      icon: {
-        required: true,
-        type: String,
-      },
-      subTitle: {
-        required: false,
-      },
+      title: {required: true, type: String},
+      value: {required: true},
+      subTitle: {required: false},
+      icon: {required: false, type: String},
     },
   };
 </script>

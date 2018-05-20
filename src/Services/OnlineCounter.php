@@ -14,7 +14,7 @@ class OnlineCounter
     /**
      * @var float|int
      */
-    protected $onlineMarginInSecond = 5 * 60;
+    protected $onlineMarginInSecond;
     /**
      * @var OnlineVisitorsRepository
      */
@@ -22,7 +22,7 @@ class OnlineCounter
     /**
      * @var string
      */
-    protected $keyPrefix = 'server-dashboard:online:';
+    protected $keyPrefix;
 
     /**
      * OnlineCounter constructor.
@@ -32,6 +32,9 @@ class OnlineCounter
     public function __construct(OnlineVisitorsRepository $visitorsRepository)
     {
         $this->visitorsRepository = $visitorsRepository;
+
+        $this->onlineMarginInSecond = config('server-dashboard.online_user_counter_margin');
+        $this->keyPrefix            = lrtrim(config('server-dashboard.prefix'), ':');
     }
 
     /**
@@ -39,10 +42,9 @@ class OnlineCounter
      */
     public function getOnlineUsersCount(): int
     {
-        $endTime   = Carbon::now();
-        $startTime = $endTime->subSeconds($this->onlineMarginInSecond);
+        $now = Carbon::now();
 
-        return $this->visitorsRepository->getVisitorCount($this->visitorKey(), $startTime->getTimestamp(), $endTime->getTimestamp());
+        return $this->visitorsRepository->getVisitorCount($this->userKey(), $now->getTimestamp(), $now->subSeconds($this->onlineMarginInSecond)->getTimestamp());
     }
 
     /**
@@ -50,7 +52,29 @@ class OnlineCounter
      */
     public function getOnlineVisitorsCount(): int
     {
-        return 1234;
+        $now = Carbon::now();
+
+        return $this->visitorsRepository->getVisitorCount($this->visitorKey(), $now->getTimestamp(), $now->subSeconds($this->onlineMarginInSecond)->getTimestamp());
+    }
+
+    /**
+     * @param string $sessionCode
+     */
+    public function logGuestUser(string $sessionCode)
+    {
+        $time = Carbon::now()->getTimestamp();
+
+        $this->visitorsRepository->setVisitorLog($this->visitorKey(), $time, $sessionCode);
+    }
+
+    /**
+     * @param string $sessionCode
+     */
+    public function logAuthenticUser(string $sessionCode)
+    {
+        $time = Carbon::now()->getTimestamp();
+
+        $this->visitorsRepository->setVisitorLog($this->userKey(), $time, $sessionCode);
     }
 
     /**
@@ -62,12 +86,20 @@ class OnlineCounter
     }
 
     /**
+     * @return string
+     */
+    private function userKey(): string
+    {
+        return $this->prepareKey('users');
+    }
+
+    /**
      * @param string $key
      *
      * @return string
      */
     private function prepareKey(string $key): string
     {
-        return sprintf("%s%s", $this->keyPrefix, $key);
+        return sprintf("%s:online:%s", $this->keyPrefix, $key);
     }
 }

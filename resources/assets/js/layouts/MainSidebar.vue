@@ -5,10 +5,14 @@
                          to="/dashboard"
                          active-class="active"
                          class="nav-item">
-                <a class="nav-link">
-                    <i class="fas fa-tachometer-alt"></i>
-                    Dashboard
-                </a>
+                <a class="nav-link"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+            </router-link>
+
+            <router-link tag="li"
+                         to="/database"
+                         active-class="active"
+                         class="nav-item">
+                <a class="nav-link"><i class="fas fa-database"></i> Database</a>
             </router-link>
         </ul>
     </aside>

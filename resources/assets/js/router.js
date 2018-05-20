@@ -3,7 +3,7 @@ import Router from "vue-router";
 
 Vue.use(Router);
 
-export default new Router({
+const router = new Router({
   mode: "history",
   base: baseUri,
   routes: [
@@ -14,7 +14,25 @@ export default new Router({
 
     {
       path: "/dashboard",
-      component: require("./pages/Dashboard"),
+      component: require("./pages/Dashboard/Index"),
+      meta: {
+        title: "Server Dashboard",
+      },
+    },
+
+    {
+      path: "/database",
+      component: require("./pages/Database/Index"),
+      meta: {
+        title: "Database | Server Dashboard",
+      },
     },
   ],
 });
+
+router.beforeEach((to, from, next) => {
+  document.title = to.meta.title;
+  next();
+});
+
+export default router;

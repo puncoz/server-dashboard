@@ -2,8 +2,9 @@
 
 return [
 
-    'uri'        => 'server',
-    'middleware' => 'web',
+    'uri'                        => 'server',
+    'middleware'                 => 'web',
+    'online_user_counter_margin' => 5 * 60,
 
     /*
     |--------------------------------------------------------------------------

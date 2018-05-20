@@ -8,6 +8,10 @@ window.Popper = require("popper.js").default;
 
 require("bootstrap");
 
+$("body").tooltip({
+  selector: "[data-toggle=tooltip]",
+});
+
 Vue.prototype.$http = axios.create();
 
 window.Bus = new Vue({name: "Bus"});
@@ -22,8 +26,11 @@ new Vue({
   router,
 
   data() {
-    return {};
+    return {
+      pageLoading: false,
+    };
   },
 
   render: h => h(App),
 });
+

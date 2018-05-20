@@ -6,6 +6,7 @@ Route::prefix('api')->group(
     function () {
         Route::get('/stats/online', 'DashboardStatsController@online');
         Route::get('/stats/server', 'DashboardStatsController@server');
+        Route::get('/database/tables', 'DatabaseController@tables');
     }
 );
 

@@ -2,8 +2,10 @@
 
 namespace Puncoz\ServerDashboard;
 
+use Puncoz\ServerDashboard\Contracts\DatabaseStatsRepository;
 use Puncoz\ServerDashboard\Contracts\OnlineVisitorsRepository;
 use Puncoz\ServerDashboard\Repositories\RedisOnlineVisitorsRepository;
+use Puncoz\ServerDashboard\Repositories\PostgresDatabaseStatsRepository;
 
 /**
  * Trait RepositoryBindings
@@ -18,5 +20,6 @@ trait RepositoryBindings
      */
     public $repositoryBindings = [
         OnlineVisitorsRepository::class => RedisOnlineVisitorsRepository::class,
+        DatabaseStatsRepository::class  => PostgresDatabaseStatsRepository::class,
     ];
 }
