@@ -6,6 +6,10 @@ return [
     'middleware'                 => 'web',
     'online_user_counter_margin' => 5 * 60,
 
+    'db_tables' => [
+        'users' => 'updated_at',
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Server Dashboard Redis Connection

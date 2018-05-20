@@ -2,6 +2,7 @@
 
 namespace Puncoz\ServerDashboard\Http\Controllers;
 
+use Puncoz\ServerDashboard\Exceptions\ConnectionFailedException;
 use Puncoz\ServerDashboard\Services\DatabaseStats;
 
 /**
@@ -17,7 +18,11 @@ class DatabaseController extends Controller
      */
     public function tables(DatabaseStats $databaseStats)
     {
-        $dbTables = $databaseStats->getAllTables();
+        try {
+            $dbTables = $databaseStats->getAllTables();
+        } catch (ConnectionFailedException $exception) {
+            return $this->jsonResponse(['connection' => false]);
+        }
 
         return $this->jsonResponse($dbTables);
     }

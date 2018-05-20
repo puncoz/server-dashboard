@@ -27,11 +27,13 @@
 <style scoped>
     .loader-wrapper {
         display: none;
-        background: #fff;
+        background: rgba(255, 255, 255, .9);
         z-index: 1;
         position: absolute;
         width: 100%;
         height: 100%;
+        top: 0;
+        bottom: 0;
         justify-content: center;
         align-items: center;
     }

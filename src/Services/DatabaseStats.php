@@ -3,6 +3,7 @@
 namespace Puncoz\ServerDashboard\Services;
 
 use Puncoz\ServerDashboard\Contracts\DatabaseStatsRepository;
+use Puncoz\ServerDashboard\Exceptions\ConnectionFailedException;
 
 /**
  * Class DatabaseStats
@@ -34,19 +35,16 @@ class DatabaseStats
 
     /**
      * @return array
+     * @throws ConnectionFailedException
      */
     public function getAllTables(): array
     {
-        if ( !$this->connectionStatus ) {
-            return [
-                'status' => false,
-            ];
+        if (!$this->connectionStatus) {
+            throw new ConnectionFailedException();
         }
 
-        $tables = $this->databaseStatsRepository->tableList();
+        $dbTables = config('server-dashboard.db_tables');
 
-        dd($tables);
-
-        return [];
+        return $this->databaseStatsRepository->getTablesStats($dbTables);
     }
 }

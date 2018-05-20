@@ -3,6 +3,7 @@
 namespace Puncoz\ServerDashboard\Contracts;
 
 use Illuminate\Support\Collection;
+use Puncoz\ServerDashboard\Exceptions\ConnectionFailedException;
 
 /**
  * Interface DatabaseStatsRepository
@@ -10,14 +11,15 @@ use Illuminate\Support\Collection;
  */
 interface DatabaseStatsRepository
 {
-
-    /**
-     * @return Collection
-     */
-    public function tableList(): Collection;
-
     /**
      * @return bool
      */
     public function checkConnection(): bool;
+
+    /**
+     * @param array $dbTables
+     *
+     * @return array
+     */
+    public function getTablesStats(array $dbTables): array ;
 }
