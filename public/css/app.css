@@ -10502,3 +10502,7 @@ a.text-dark:focus {
   font-weight: 600;
 }
 
+.btn-no-radius {
+  border-radius: 0;
+}
+

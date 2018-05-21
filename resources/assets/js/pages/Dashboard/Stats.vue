@@ -37,7 +37,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import StatCard from "../../components/Cards/StatCard";
+  import StatCard from "../../components/StatCard";
 
   export default {
     name: "Stats",

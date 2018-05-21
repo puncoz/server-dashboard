@@ -23,10 +23,18 @@ mix.
     }).
     setPublicPath("public").
     js("resources/assets/js/app.js", "public/js").
+    extract([
+      "jquery", "vue", "axios",
+      "codemirror",
+    ]).
     sass("resources/assets/sass/app.scss", "public/css").
-    sourceMaps().
-    copy("public", "../../../public/vendor/server-dashboard").
-    version();
+    copy("public", "../../../public/vendor/server-dashboard");
+
+if (mix.inProduction()) {
+  mix.sourceMaps(false).version();
+} else {
+  mix.sourceMaps(true);
+}
 
 mix.webpackConfig({
   resolve: {

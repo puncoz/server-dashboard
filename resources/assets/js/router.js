@@ -27,6 +27,14 @@ const router = new Router({
         title: "Database | Server Dashboard",
       },
     },
+
+    {
+      path: "/sql",
+      component: require("./pages/Sql/Index"),
+      meta: {
+        title: "Sql Editor | Server Dashboard",
+      },
+    },
   ],
 });
 

@@ -40,7 +40,7 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import Loading from "../../components/Loading/Loading";
+  import Loading from "../../components/Loading";
 
   export default {
     name: "Database",

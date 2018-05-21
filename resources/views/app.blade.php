@@ -20,6 +20,8 @@
 <script>
   window.baseUri = "{{ lrtrim(config('server-dashboard.uri'),'/') }}";
 </script>
+<script src="{{ mix('js/manifest.js', 'vendor/server-dashboard') }}"></script>
+<script src="{{ mix('js/vendor.js', 'vendor/server-dashboard') }}"></script>
 <script src="{{ mix('js/app.js', 'vendor/server-dashboard') }}"></script>
 </body>
 </html>

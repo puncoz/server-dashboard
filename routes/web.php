@@ -7,6 +7,7 @@ Route::prefix('api')->group(
         Route::get('/stats/online', 'DashboardStatsController@online');
         Route::get('/stats/server', 'DashboardStatsController@server');
         Route::get('/database/tables', 'DatabaseController@tables');
+        Route::post('/sql/execute', 'SqlQueryController@execute');
     }
 );
 

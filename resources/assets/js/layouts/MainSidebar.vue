@@ -14,6 +14,13 @@
                          class="nav-item">
                 <a class="nav-link"><i class="fas fa-database"></i> Database</a>
             </router-link>
+
+            <router-link tag="li"
+                         to="/sql"
+                         active-class="active"
+                         class="nav-item">
+                <a class="nav-link"><i class="fas fa-code"></i> Sql Editor</a>
+            </router-link>
         </ul>
     </aside>
 </template>

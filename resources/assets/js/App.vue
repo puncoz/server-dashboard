@@ -11,8 +11,8 @@
 </template>
 
 <script type="text/ecmascript-6">
-  import Layout      from "../layouts/MainLayout";
-  import MainContent from "../layouts/MainContent";
+  import Layout      from "./layouts/MainLayout";
+  import MainContent from "./layouts/MainContent";
 
   export default {
     name: "App",

@@ -1,7 +1,7 @@
 import Vue    from "vue";
 import axios  from "axios";
 import router from "./router";
-import App    from "./components/App";
+import App    from "./App";
 
 window.$ = window.jQuery = require("jquery");
 window.Popper = require("popper.js").default;
